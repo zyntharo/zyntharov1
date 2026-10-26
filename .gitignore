@@ -1,0 +1,43 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+*.spec.bak
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# --- Node / GUI ---
+node_modules/
+ui/dist/
+ui/dist-ssr/
+.vite/
+
+# --- Runtime state (never commit: contains memories, keys, sessions) ---
+runtime/
+*.sqlite3
+*.db
+*.db-wal
+*.db-shm
+logs/
+profiles/
+plugins_local/
+screenshots/
+
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

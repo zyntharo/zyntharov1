@@ -1,0 +1,37 @@
+# Vyralis runtime dependencies (full install).
+#
+# For a lighter install, use the tiered extras in pyproject.toml instead:
+#   pip install -e ".[desktop,browser,office]"
+#
+# Core server + agent runtime
+fastapi>=0.115
+uvicorn[standard]>=0.32
+websockets>=13.0
+httpx>=0.27
+pydantic>=2.9
+psutil>=6.0
+
+# Desktop control (mouse / keyboard / screen)
+pyautogui>=0.9.54
+pillow>=10.4
+pyperclip>=1.9
+
+# Browser control over the preinstalled Chrome/Edge
+playwright>=1.47
+
+# Office document automation
+python-docx>=1.1
+openpyxl>=3.1
+python-pptx>=1.0
+pypdf>=5.0
+odfpy>=1.4
+
+# Windows sensor telemetry + LibreHardwareMonitor bridge
+requests>=2.32
+wmi>=1.5.1; sys_platform == "win32"
+pywin32>=306; sys_platform == "win32"
+pygetwindow>=0.0.9; sys_platform == "win32"
+
+# Development / verification
+pytest>=8.0
+pytest-asyncio>=0.24

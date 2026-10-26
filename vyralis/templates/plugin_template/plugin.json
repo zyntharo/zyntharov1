@@ -1,0 +1,12 @@
+{
+  "id": "example_plugin",
+  "name": "Example Plugin",
+  "version": "0.1.0",
+  "description": "What this plugin does and when the agent should use it.",
+  "author": "Vyralis",
+  "entrypoint": "plugin.py",
+  "category": "plugin",
+  "tools": ["example_plugin.do_thing"],
+  "permissions": ["safe"],
+  "requires": []
+}

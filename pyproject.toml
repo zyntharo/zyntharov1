@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vyralis"
+version = "0.1.0"
+description = "Vyralis - Sovereign Desktop Agent Runtime. A local, voice-first AI operator that drives a real computer and a real browser."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [{ name = "Vyralis" }]
+keywords = ["agents", "computer-use", "browser-automation", "desktop-automation", "multi-agent"]
+
+# Runtime dependencies are intentionally split into tiers so the installed
+# product stays lightweight. `requirements.txt` pulls the full set; the
+# `[minimal]` extra brings up the runtime without GUI automation drivers.
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "websockets>=13.0",
+    "httpx>=0.27",
+    "pydantic>=2.9",
+    "psutil>=6.0",
+]
+
+[project.optional-dependencies]
+# Native desktop control: mouse, keyboard, screen capture.
+desktop = [
+    "pyautogui>=0.9.54",
+    "pillow>=10.4",
+    "pyperclip>=1.9",
+    "pygetwindow>=0.0.9; sys_platform == 'win32'",
+    "pywin32>=306; sys_platform == 'win32'",
+]
+# Browser control over the user's *existing* Chrome/Edge (no bundled browser).
+browser = ["playwright>=1.47"]
+# Office document manipulation.
+office = [
+    "python-docx>=1.1",
+    "openpyxl>=3.1",
+    "python-pptx>=1.0",
+    "pypdf>=5.0",
+    "odfpy>=1.4",
+]
+# Rich Windows sensor telemetry (temps, fans, voltages).
+hardware = ["wmi>=1.5.1; sys_platform == 'win32'", "requests>=2.32"]
+# Voice: local STT/TTS. Optional - the GUI falls back to the browser engines.
+voice = ["faster-whisper>=1.0", "sounddevice>=0.4", "numpy>=1.26"]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.24", "ruff>=0.6"]
+
+[project.scripts]
+vyralis = "vyralis.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["vyralis*"]
+
+[tool.setuptools.package-data]
+vyralis = ["templates/**/*", "gui/**/*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]

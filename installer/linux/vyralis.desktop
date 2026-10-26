@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Vyralis
+GenericName=Sovereign Desktop Agent Runtime
+Comment=Operate your computer, browser and applications by voice
+Exec=/opt/vyralis/vyralis %u
+Icon=vyralis
+Terminal=false
+Categories=Utility;Office;Development;
+Keywords=ai;agent;automation;assistant;voice;
+StartupNotify=true
+StartupWMClass=Vyralis
